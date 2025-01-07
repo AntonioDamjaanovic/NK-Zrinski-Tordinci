@@ -38,6 +38,7 @@ import androidx.navigation.NavController
 import com.example.nkzrinskitordinci.R
 import com.example.nkzrinskitordinci.Routes
 import com.example.nkzrinskitordinci.data.PlayerViewModel
+import com.example.nkzrinskitordinci.data.TeamViewModel
 import com.example.nkzrinskitordinci.ui.theme.DarkGray
 import com.example.nkzrinskitordinci.ui.theme.LightGray
 import com.example.nkzrinskitordinci.ui.theme.Pink
@@ -45,7 +46,8 @@ import com.example.nkzrinskitordinci.ui.theme.White
 
 @Composable
 fun ClubScreen(
-    viewModel: PlayerViewModel,
+    playerViewModel: PlayerViewModel,
+    teamViewModel: TeamViewModel,
     navigation: NavController
 ) {
     Column(
@@ -56,7 +58,7 @@ fun ClubScreen(
         ScreenTitle(
             title = "NK Zrinski Tordinci"
         )
-        ClubCategories(viewModel, navigation)
+        ClubCategories(playerViewModel, teamViewModel, navigation)
     }
 }
 
@@ -105,7 +107,8 @@ fun TabButton(
 
 @Composable
 fun ClubCategories(
-    viewModel: PlayerViewModel,
+    playerViewModel: PlayerViewModel,
+    teamViewModel: TeamViewModel,
     navigation: NavController
 ) {
     var currentActiveButton by remember { mutableIntStateOf(0) }
@@ -132,16 +135,16 @@ fun ClubCategories(
         }
 
         when (currentActiveButton) {
-            0 -> PlayerList(viewModel, navigation)
+            0 -> PlayerList(playerViewModel, navigation)
             1 -> GamesList()
-            2 -> TableList()
+            2 -> TableList(teamViewModel)
         }
     }
 }
 
 @Composable
 fun PlayerList(
-    viewModel: PlayerViewModel,
+    playerViewModel: PlayerViewModel,
     navigation: NavController
 ) {
     LazyColumn(
@@ -150,9 +153,9 @@ fun PlayerList(
         item {
             Text(text = "Igrači", style = MaterialTheme.typography.titleMedium)
         }
-        items(viewModel.playersData.size) {
+        items(playerViewModel.playersData.size) {
             PlayerRow(
-                playerName = viewModel.playersData[it].name
+                playerName = playerViewModel.playersData[it].name
             ) {
                 navigation.navigate(
                     Routes.getPlayerDetailsPath(it)

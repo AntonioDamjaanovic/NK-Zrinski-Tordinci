@@ -41,11 +41,11 @@ import com.example.nkzrinskitordinci.ui.theme.White
 
 @Composable
 fun PlayerDetailsScreen(
-    viewModel: PlayerViewModel,
+    playerViewModel: PlayerViewModel,
     navigation: NavController,
     playerId: Int
 ) {
-    val player = viewModel.playersData[playerId]
+    val player = playerViewModel.playersData[playerId]
     Column {
         TopImageAndBar(navigation, player)
         PlayerStats(player)

@@ -22,6 +22,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.nkzrinskitordinci.data.Team
+import com.example.nkzrinskitordinci.data.TeamViewModel
 
 fun sortTeamsByPoints(teams: MutableList<Team>): List<Team> {
     teams.sortWith(compareByDescending<Team> { it.points }
@@ -30,23 +31,10 @@ fun sortTeamsByPoints(teams: MutableList<Team>): List<Team> {
 }
 
 @Composable
-fun TableList() {
-    val teams = mutableListOf(
-        Team("NK Borac (R)", 13, 9, 0, 4, 43, 17, 26, 28),
-        Team("NK Mladost (A)", 13, 4, 2, 7, 16, 25, -9, 14),
-        Team("NK Hajduk Mirko", 13, 2, 3, 8, 21, 39, -18, 9),
-        Team("NK Vidor Matijević", 13, 10, 1, 2, 45, 18, 27, 31),
-        Team("NK Croatia (NJ)", 13, 10, 1, 2, 34, 16, 18, 31),
-        Team("NK Polet (DNS)", 13, 2, 1, 10, 18, 45, -27, 7),
-        Team("NK Slavonac (P)", 13, 0, 3, 10, 18, 35, -17, 3),
-        Team("NK Zrinski (T)", 13, 9, 0, 4, 36, 17, 19, 27),
-        Team("NK Sremac (M)", 13, 5, 1, 7, 25, 22, 3, 16),
-        Team("NK Nosteria", 13, 5, 1, 7, 23, 38, -15, 16),
-        Team("NK Sloga (NM)", 13, 4, 3, 6, 17, 26, -9, 15),
-        Team("NK Mladost (P)", 13, 9, 2, 2, 42, 11, 31, 29),
-        Team("NK Šokadija (SM)", 13, 3, 2, 8, 13, 30, -17, 11),
-        Team("NK Marinci", 13, 2, 1, 10, 14, 32, -18, 7)
-    )
+fun TableList(
+    teamViewModel: TeamViewModel
+) {
+    val teams = teamViewModel.teamsData
     val sortedTeams = sortTeamsByPoints(teams)
 
     LazyColumn(
@@ -142,7 +130,10 @@ fun TableHeader() {
 }
 
 @Composable
-fun TeamRow(position: Int, team: Team) {
+fun TeamRow(
+    position: Int,
+    team: Team
+) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
