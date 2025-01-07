@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "770784359376",
+    "project_id": "nk-zrinski-tordinci",
+    "storage_bucket": "nk-zrinski-tordinci.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:770784359376:android:08c906574dc0935e4abfd5",
+        "android_client_info": {
+          "package_name": "com.example.nkzrinskitordinci"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtFztVN5XToYjdnQjTACiSxY_2K4q06qI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
