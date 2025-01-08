@@ -6,8 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.nkzrinskitordinci.data.PlayerViewModel
-import com.example.nkzrinskitordinci.data.TeamViewModel
+import com.example.nkzrinskitordinci.data.ClubViewModel
 import com.example.nkzrinskitordinci.ui.ClubScreen
 import com.example.nkzrinskitordinci.ui.PlayerDetailsScreen
 
@@ -25,8 +24,7 @@ object Routes {
 
 @Composable
 fun NavigationController(
-    playerViewModel: PlayerViewModel,
-    teamViewModel: TeamViewModel
+    clubViewModel: ClubViewModel
 ) {
     val navController = rememberNavController()
     NavHost(
@@ -35,8 +33,7 @@ fun NavigationController(
     ) {
         composable(Routes.SCREEN_ALL_PLAYERS) {
             ClubScreen(
-                playerViewModel = playerViewModel,
-                teamViewModel = teamViewModel,
+                clubViewModel = clubViewModel,
                 navigation = navController
             )
         }
@@ -51,7 +48,7 @@ fun NavigationController(
             backStackEntry ->
                 backStackEntry.arguments?.getInt("playerId")?.let {
                     PlayerDetailsScreen(
-                        playerViewModel = playerViewModel,
+                        clubViewModel = clubViewModel,
                         navigation = navController,
                         playerId = it
                     )

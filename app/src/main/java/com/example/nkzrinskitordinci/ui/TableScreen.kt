@@ -22,7 +22,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.nkzrinskitordinci.data.Team
-import com.example.nkzrinskitordinci.data.TeamViewModel
+import com.example.nkzrinskitordinci.data.ClubViewModel
 
 fun sortTeamsByPoints(teams: MutableList<Team>): List<Team> {
     teams.sortWith(compareByDescending<Team> { it.points }
@@ -32,9 +32,9 @@ fun sortTeamsByPoints(teams: MutableList<Team>): List<Team> {
 
 @Composable
 fun TableList(
-    teamViewModel: TeamViewModel
+    clubViewModel: ClubViewModel
 ) {
-    val teams = teamViewModel.teamsData
+    val teams = clubViewModel.teamsData
     val sortedTeams = sortTeamsByPoints(teams)
 
     LazyColumn(

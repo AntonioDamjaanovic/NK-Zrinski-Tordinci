@@ -33,19 +33,19 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.nkzrinskitordinci.R
 import com.example.nkzrinskitordinci.Routes
+import com.example.nkzrinskitordinci.data.ClubViewModel
 import com.example.nkzrinskitordinci.data.Player
-import com.example.nkzrinskitordinci.data.PlayerViewModel
 import com.example.nkzrinskitordinci.ui.theme.DarkGray
 import com.example.nkzrinskitordinci.ui.theme.LightGray
 import com.example.nkzrinskitordinci.ui.theme.White
 
 @Composable
 fun PlayerDetailsScreen(
-    playerViewModel: PlayerViewModel,
+    clubViewModel: ClubViewModel,
     navigation: NavController,
     playerId: Int
 ) {
-    val player = playerViewModel.playersData[playerId]
+    val player = clubViewModel.playersData[playerId]
     Column(
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -174,7 +174,9 @@ fun TopImageAndBar(
 }
 
 @Composable
-fun PlayerStats(player: Player) {
+fun PlayerStats(
+    player: Player
+) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,

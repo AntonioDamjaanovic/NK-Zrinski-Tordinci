@@ -37,8 +37,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.nkzrinskitordinci.R
 import com.example.nkzrinskitordinci.Routes
-import com.example.nkzrinskitordinci.data.PlayerViewModel
-import com.example.nkzrinskitordinci.data.TeamViewModel
+import com.example.nkzrinskitordinci.data.ClubViewModel
 import com.example.nkzrinskitordinci.ui.theme.DarkGray
 import com.example.nkzrinskitordinci.ui.theme.LightGray
 import com.example.nkzrinskitordinci.ui.theme.Pink
@@ -46,8 +45,7 @@ import com.example.nkzrinskitordinci.ui.theme.White
 
 @Composable
 fun ClubScreen(
-    playerViewModel: PlayerViewModel,
-    teamViewModel: TeamViewModel,
+    clubViewModel: ClubViewModel,
     navigation: NavController
 ) {
     Column(
@@ -61,7 +59,7 @@ fun ClubScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.weight(1f)
         ) {
-            ClubCategories(playerViewModel, teamViewModel, navigation)
+            ClubCategories(clubViewModel, navigation)
         }
         BlackBottomBar()
     }
@@ -111,8 +109,7 @@ fun TabButton(
 
 @Composable
 fun ClubCategories(
-    playerViewModel: PlayerViewModel,
-    teamViewModel: TeamViewModel,
+    clubViewModel: ClubViewModel,
     navigation: NavController
 ) {
     var currentActiveButton by remember { mutableIntStateOf(0) }
@@ -139,16 +136,16 @@ fun ClubCategories(
         }
 
         when (currentActiveButton) {
-            0 -> PlayerList(playerViewModel, navigation)
-            1 -> GamesList()
-            2 -> TableList(teamViewModel)
+            0 -> PlayerList(clubViewModel, navigation)
+            1 -> GamesList(clubViewModel)
+            2 -> TableList(clubViewModel)
         }
     }
 }
 
 @Composable
 fun PlayerList(
-    playerViewModel: PlayerViewModel,
+    clubViewModel: ClubViewModel,
     navigation: NavController
 ) {
     LazyColumn(
@@ -157,9 +154,9 @@ fun PlayerList(
         item {
             Text(text = "Igrači", style = MaterialTheme.typography.titleMedium)
         }
-        items(playerViewModel.playersData.size) {
+        items(clubViewModel.playersData.size) {
             PlayerRow(
-                playerName = playerViewModel.playersData[it].name
+                playerName = clubViewModel.playersData[it].name
             ) {
                 navigation.navigate(
                     Routes.getPlayerDetailsPath(it)

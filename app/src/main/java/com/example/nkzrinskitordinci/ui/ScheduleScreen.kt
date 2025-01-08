@@ -17,25 +17,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.nkzrinskitordinci.data.ClubViewModel
 import com.example.nkzrinskitordinci.data.Game
 
 @Composable
-fun GamesList() {
-    val games = mutableListOf(
-        Game("NK Zrinski (T)", "NK Nosteria", "25.08.2024. 17:00", "2:3"),
-        Game("NK Mladost (P)", "NK Zrinski (T)", "01.09.2024. 17:00", "1:0"),
-        Game("NK Zrinski (T)", "NK Vidor Matijević", "08.09.2024. 16:30", "3:4"),
-        Game("NK Polet (DNS)", "NK Zrinski (T)", "15.09.2024. 16:30", "0:5"),
-        Game("NK Zrinski (T)", "NK Borac (R)", "22.09.2024. 16:00", "3:1"),
-        Game("NK Croatia (NJ)", "NK Zrinski (T)", "29.09.2024. 15:30", "3:2"),
-        Game("NK Zrinski (T)", "NK Hajduk Mirko", "06.10.2024. 15:30", "4:1"),
-        Game("NK Mladost (A)", "NK Zrinski (T)", "13.10.2024. 15:30", "0:1"),
-        Game("NK Zrinski (T)", "NK Marinci", "20.10.2024. 14:00", "4:1"),
-        Game("NK Sremac (M)", "NK Zrinski (T)", "27.10.2024. 14:00", "1:2"),
-        Game("NK Zrinski (T)", "NK Šokadija (SM)", "03.11.2024. 14:00", "3:1"),
-        Game("NK Zrinski (T)", "NK Sloga (NM)", "10.11.2024. 14:00", "4:0"),
-        Game("NK Slavonac (P)", "NK Zrinski (T)", "17.11.2024. 14:00", "1:3")
-    )
+fun GamesList(
+    clubViewModel: ClubViewModel
+) {
+    val games = clubViewModel.gamesData
+
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -51,7 +41,9 @@ fun GamesList() {
 }
 
 @Composable
-fun GameItem(game: Game) {
+fun GameItem(
+    game: Game
+) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
@@ -97,7 +89,6 @@ fun GameItem(game: Game) {
                 maxLines = 1
             )
         }
-        Spacer(modifier = Modifier.width(50.dp))
         Column {
             val result = game.result.split(":")
             Text(
