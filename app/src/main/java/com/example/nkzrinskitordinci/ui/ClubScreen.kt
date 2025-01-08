@@ -55,10 +55,15 @@ fun ClubScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxSize()
     ) {
-        ScreenTitle(
-            title = "NK Zrinski Tordinci"
-        )
-        ClubCategories(playerViewModel, teamViewModel, navigation)
+        ScreenTitle(title = "NK Zrinski Tordinci")
+        Column(
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.weight(1f)
+        ) {
+            ClubCategories(playerViewModel, teamViewModel, navigation)
+        }
+        BlackBottomBar()
     }
 }
 
@@ -82,7 +87,6 @@ fun ScreenTitle(title: String) {
         )
     }
 }
-
 
 @Composable
 fun TabButton(
@@ -244,4 +248,14 @@ fun IconButton(
             )
         }
     }
+}
+
+@Composable
+fun BlackBottomBar() {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(48.dp)
+            .background(Color.Black)
+    )
 }

@@ -46,9 +46,20 @@ fun PlayerDetailsScreen(
     playerId: Int
 ) {
     val player = playerViewModel.playersData[playerId]
-    Column {
+    Column(
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxSize()
+    ) {
         TopImageAndBar(navigation, player)
-        PlayerStats(player)
+        Column(
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.weight(1f)
+        ) {
+            PlayerStats(player)
+        }
+        BlackBottomBar()
     }
 
 }
