@@ -55,4 +55,13 @@ class ClubViewModel: ViewModel() {
                 }
             }
     }
+
+    fun addPlayer(player: Player) {
+        db.collection("players")
+            .add(player)
+            .addOnSuccessListener { documentReference ->
+                player.id = documentReference.id
+                playersData.add(player)
+            }
+    }
 }

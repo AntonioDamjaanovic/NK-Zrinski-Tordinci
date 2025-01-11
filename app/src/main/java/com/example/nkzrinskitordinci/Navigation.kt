@@ -7,12 +7,14 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.nkzrinskitordinci.data.ClubViewModel
+import com.example.nkzrinskitordinci.ui.AddPlayerScreen
 import com.example.nkzrinskitordinci.ui.ClubScreen
 import com.example.nkzrinskitordinci.ui.PlayerDetailsScreen
 
 object Routes {
     const val SCREEN_ALL_PLAYERS = "playerList"
     const val SCREEN_PLAYER_DETAILS = "playerDetails/{playerId}"
+    const val SCREEN_ADDING_PLAYER = "addPlayer"
 
     fun getPlayerDetailsPath(playerId: Int?) : String {
         if (playerId != null && playerId != -1) {
@@ -53,6 +55,12 @@ fun NavigationController(
                         playerId = it
                     )
                 }
+        }
+        composable(Routes.SCREEN_ADDING_PLAYER) {
+            AddPlayerScreen(
+                clubViewModel = clubViewModel,
+                navigation = navController
+            )
         }
     }
 }

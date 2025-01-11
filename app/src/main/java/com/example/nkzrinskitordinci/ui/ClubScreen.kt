@@ -173,8 +173,10 @@ fun PlayerList(
             ) {
                 IconButton(
                     iconResource = R.drawable.ic_plus,
-                    text = "Dodaj igrača"
-                )
+                    text = "Dodaj igrača",
+                ) {
+                    navigation.navigate(Routes.SCREEN_ADDING_PLAYER)
+                }
             }
         }
         item {
@@ -224,19 +226,24 @@ fun PlayerRow(
 
 @Composable
 fun IconButton(
-    @DrawableRes iconResource:
-    Int, text: String
+    @DrawableRes iconResource: Int,
+    text: String,
+    onClick: () -> Unit
 ) {
     Button(
-        onClick = { /*TODO*/ },
-        colors = ButtonDefaults.buttonColors(containerColor = Pink)
+        onClick = onClick,
+        colors = ButtonDefaults.buttonColors(containerColor = Pink, contentColor = White)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
                 text = text,
-                style = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                style = TextStyle(
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = White
+                )
             )
             Spacer(Modifier.width(2.dp))
             Icon(
