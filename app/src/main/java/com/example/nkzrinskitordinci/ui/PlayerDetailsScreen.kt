@@ -1,5 +1,6 @@
 package com.example.nkzrinskitordinci.ui
 
+import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -45,23 +46,34 @@ fun PlayerDetailsScreen(
     navigation: NavController,
     playerId: Int
 ) {
-    val player = clubViewModel.playersData[playerId]
-    Column(
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.fillMaxSize()
-    ) {
-        TopImageAndBar(navigation, player)
+    val player = clubViewModel.playersData.getOrNull(playerId)
+    if (player != null) {
         Column(
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.fillMaxSize()
         ) {
-            PlayerStats(player)
+            TopImageAndBar(navigation, player)
+            Column(
+                verticalArrangement = Arrangement.Top,
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.weight(1f)
+            ) {
+                PlayerStats(player)
+                IconButton(iconResource = R.drawable.ic_minus, "Obriši igrača") {
+                    try {
+                        clubViewModel.deletePlayer(player)
+                        navigation.popBackStack(Routes.SCREEN_ALL_PLAYERS, false)
+                    } catch (e: Exception) {
+                        Log.e("PlayerDetailsScreen", "Error deleting player", e)
+                    }
+                }
+            }
+            BlackBottomBar()
         }
-        BlackBottomBar()
+    } else {
+        Log.e("PlayerDetailsScreen", "Invalid player ID: $playerId")
     }
-
 }
 
 @Composable

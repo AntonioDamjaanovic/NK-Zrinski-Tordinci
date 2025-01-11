@@ -1,5 +1,6 @@
 package com.example.nkzrinskitordinci.data
 
+import android.util.Log
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import com.google.firebase.Firebase
@@ -62,6 +63,21 @@ class ClubViewModel: ViewModel() {
             .addOnSuccessListener { documentReference ->
                 player.id = documentReference.id
                 playersData.add(player)
+            }
+            .addOnFailureListener { e ->
+                Log.w("ClubViewModel", "Error adding player", e)
+            }
+    }
+
+    fun deletePlayer(player: Player) {
+        db.collection("players")
+            .document(player.id)
+            .delete()
+            .addOnSuccessListener {
+                playersData.remove(player)
+            }
+            .addOnFailureListener { e ->
+                Log.w("ClubViewModel", "Error deleting player", e)
             }
     }
 }
