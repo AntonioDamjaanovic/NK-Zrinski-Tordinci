@@ -23,6 +23,10 @@ import androidx.compose.material3.ButtonElevation
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -60,6 +64,14 @@ fun PlayerDetailsScreen(
                 modifier = Modifier.weight(1f)
             ) {
                 PlayerStats(player)
+                IconButton(iconResource = R.drawable.ic_plus, "Dodaj utakmicu") {
+                    try {
+                        navigation.navigate(Routes.getPlayerStatsPath(playerId))
+                    } catch (e: Exception) {
+                        Log.e("PlayerDetailsScreen", "Error adding stats of a game", e)
+                    }
+                }
+                Spacer(modifier = Modifier.height(15.dp))
                 IconButton(iconResource = R.drawable.ic_minus, "Obriši igrača") {
                     try {
                         clubViewModel.deletePlayer(player)
@@ -199,7 +211,9 @@ fun PlayerStats(
         Row(
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth().padding(bottom = 10.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 10.dp)
         ) {
             Text(
                 text = "Pozicija:",
@@ -216,7 +230,9 @@ fun PlayerStats(
         Row(
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth().padding(bottom = 10.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 10.dp)
         ) {
             Text(
                 text = "Nastupi:",
@@ -233,7 +249,9 @@ fun PlayerStats(
         Row(
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth().padding(bottom = 10.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 10.dp)
         ) {
             Text(
                 text = "Minute:",
@@ -250,7 +268,9 @@ fun PlayerStats(
         Row(
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth().padding(bottom = 10.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 10.dp)
         ) {
             Text(
                 text = "Pogotci:",
@@ -267,7 +287,9 @@ fun PlayerStats(
         Row(
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth().padding(bottom = 10.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 10.dp)
         ) {
             Text(
                 text = "Asistencije:",

@@ -80,4 +80,19 @@ class ClubViewModel: ViewModel() {
                 Log.w("ClubViewModel", "Error deleting player", e)
             }
     }
+
+    fun updatePlayerStats(player: Player) {
+        db.collection("players")
+            .document(player.id)
+            .set(player)
+            .addOnSuccessListener {
+                val index = playersData.indexOfFirst { it.id == player.id }
+                if (index >= 0) {
+                    playersData[index] = player
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.w("ClubViewModel", "Error updating player stats", e)
+            }
+    }
 }

@@ -175,7 +175,7 @@ fun PlayerList(
                     iconResource = R.drawable.ic_plus,
                     text = "Dodaj igrača",
                 ) {
-                    navigation.navigate(Routes.SCREEN_ADDING_PLAYER)
+                    navigation.navigate(Routes.SCREEN_ADD_PLAYER)
                 }
             }
         }
@@ -232,10 +232,13 @@ fun IconButton(
 ) {
     Button(
         onClick = onClick,
-        colors = ButtonDefaults.buttonColors(containerColor = Pink, contentColor = White)
+        colors = ButtonDefaults.buttonColors(containerColor = Pink, contentColor = White),
+        modifier = Modifier.width(200.dp)
     ) {
         Row(
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center,
+            modifier = Modifier.fillMaxWidth()
         ) {
             Text(
                 text = text,
@@ -245,10 +248,11 @@ fun IconButton(
                     color = White
                 )
             )
-            Spacer(Modifier.width(2.dp))
+            Spacer(Modifier.width(4.dp))
             Icon(
                 painter = painterResource(id = iconResource),
-                contentDescription = text
+                contentDescription = text,
+                modifier = Modifier.size(24.dp)
             )
         }
     }

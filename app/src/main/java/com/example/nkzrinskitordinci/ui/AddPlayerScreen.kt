@@ -59,7 +59,6 @@ fun AddPlayerScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .weight(1f)
-                .padding(vertical = 10.dp)
         ) {
             PlayerInputForm(clubViewModel, navigation)
         }
@@ -84,7 +83,7 @@ fun PlayerInputForm(
         verticalArrangement = Arrangement.Center,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(40.dp)
+            .padding(50.dp)
     ) {
         CustomTextField(caption = "Ime", value = name, onValueChange = { name = it })
         CustomTextField(caption = "Pozicija", value = position, onValueChange = { position = it })
@@ -136,15 +135,17 @@ fun CustomTextField(
             .fillMaxWidth()
             .padding(bottom = 4.dp),
         textAlign = TextAlign.Start,
+        fontSize = 14.sp,
         color = Pink
     )
     TextField(
         modifier = Modifier
             .fillMaxWidth()
-            .border(width = 1.dp, color = Color.Black, shape = RoundedCornerShape(8.dp)),
+            .border(width = 1.dp, color = Color.Black, shape = RoundedCornerShape(8.dp))
+            .height(50.dp),
         value = value,
         onValueChange = onValueChange,
-        textStyle = TextStyle(color = Pink),
+        textStyle = TextStyle(color = Pink, fontSize = 16.sp),
         colors = TextFieldDefaults.textFieldColors(
             containerColor = LightGray,
             cursorColor = Color.Black,
